@@ -1,0 +1,38 @@
+//Testes de requisição dos produtos
+
+@baseUrl= http://localhost:4000
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjp7ImlkIjoiNWZhYzY5NDdlOGY3YWIyNDljODdjNzhlIn0sImlhdCI6MTYwNTEzNDY2MywiZXhwIjoxNjA1MTU2MjYzfQ.4jBN88nxMwYO13K-0WR4Bpqbyva5jh7z42788duMKN0
+
+###
+//Obtendo todos os produtos
+GET {{baseUrl}}/produto
+Content-Type: application/json
+x-access-token: {{token}}
+###
+
+POST {{baseUrl}}/produto
+Content-Type: application/json
+x-access-token: {{token}}
+
+{
+    "nome" : "Feijão Preto",
+    "codigobarra": "1234567891234",
+    "descricao": "Feijão 1kg",
+    "preco": "8.90"
+}
+
+###
+@id = 5fac71069752f9274875ba74
+//LISTAR PRODUTO POR ID
+GET {{baseUrl}}/produto/{{id}}
+Content-Type: application/json
+x-access-token: {{token}}
+
+
+###
+@id = 5fac71069752f9274875ba74
+//REMOVER PRODUTO PRO ID
+DELETE {{baseUrl}}/produto/{{id}}
+Content-Type: application/json
+x-access-token: {{token}}
