@@ -62,4 +62,33 @@ router.delete("/:id", auth, async(req, res) =>{
     })
 })
 
+router.put("/", auth,
+[
+    check("nome","Informe o nome do produto").not().isEmpty(),
+    check("codigobarra","Código de barra deve possuir 13 caracteres")
+    .isNumeric()
+    .isLength({min:13, max:13}),
+    check("preco","Informe um preço válido").isFloat({min:0})
+], async(req, res) =>{
+    const errors = validationResult(req)
+    if(!errors.isEmpty()){
+        return res.status(400).json({
+            errors:errors.array()
+        })
+    }
+    let dados = req.body
+    await Produto.findByIdAndUpdate(req.body._id,{
+        $set: dados
+    }, {new: true},
+        function(err, result){
+            if(err){
+                res.send(err)
+            }
+            else{
+                res.send(result)
+            }
+        }
+    )
+})
+
 module.exports = router

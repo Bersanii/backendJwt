@@ -36,3 +36,16 @@ x-access-token: {{token}}
 DELETE {{baseUrl}}/produto/{{id}}
 Content-Type: application/json
 x-access-token: {{token}}
+
+###
+PUT {{baseUrl}}/produto
+Content-Type: application/json
+x-access-token: {{token}}
+
+{
+    "_id": "5fac6f299752f9274875ba73",
+    "nome": "Feijão preto para feijoada",
+    "descricao": "Feijão preto",
+    "codigobarra": "1235468790123",
+    "preco": "6.99"
+}
